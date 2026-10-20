@@ -1,0 +1,17 @@
+# Secrets: never commit the real keys.
+.env
+
+# A filled-in catalog may carry an inline api_key; keep it out (the *.example
+# files are committed, these are not).
+providers.yaml
+*.local.yaml
+
+# Run outputs and local scratch.
+/out/
+/runs/
+out/
+runs/
+
+# Python.
+__pycache__/
+*.pyc

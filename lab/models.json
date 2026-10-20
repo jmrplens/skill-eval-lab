@@ -1,0 +1,38 @@
+{
+  "anthropic": [
+    {"id": "haiku-5.5", "model": "claude-haiku-5-5",
+     "price": {"in": 0.10, "out": 0.50, "cw": 0.125, "cr": 0.01},
+     "long": {"over": 100000, "in": 0.50, "out": 2.50, "cw": 0.625, "cr": 0.05}},
+    {"id": "sonnet-5.5", "model": "claude-sonnet-5-5",
+     "price": {"in": 2.00, "out": 10.00, "cw": 2.50, "cr": 0.10}},
+    {"id": "opus-5.5", "model": "claude-opus-5-5",
+     "price": {"in": 4.00, "out": 20.00, "cw": 5.00, "cr": 0.20}}
+  ],
+  "openai": [
+    {"id": "gpt-5.6-luna", "model": "gpt-5.6-luna",
+     "note": "Chat Completions refuses function tools with reasoning on this model, so it runs with reasoning_effort none; see the openai-responses provider for the reasoning path.",
+     "extra_body": {"reasoning_effort": "none"},
+     "price": {"in": 0.20, "out": 1.20, "cw": 0.25, "cr": 0.02},
+     "long": {"over": 272000, "in": 0.40, "out": 1.80, "cw": 0.40, "cr": 0.04}}
+  ],
+  "openai-responses": [
+    {"id": "gpt-5.6-luna-reasoning", "model": "gpt-5.6-luna",
+     "note": "the same model through the Responses API with its default reasoning",
+     "price": {"in": 0.20, "out": 1.20, "cw": 0.25, "cr": 0.02},
+     "long": {"over": 272000, "in": 0.40, "out": 1.80, "cw": 0.40, "cr": 0.04}}
+  ],
+  "google": [
+    {"id": "gemini-flash", "model": "gemini-flash-latest",
+     "price": {"in": 0.75, "out": 3.75, "cw": 0.75, "cr": 0.075}}
+  ],
+  "qwen": [
+    {"id": "qwen3.8-flash", "model": "qwen3.8-flash",
+     "price": {"in": 0.15, "out": 0.47, "cw": 0.20, "cr": 0.016}}
+  ],
+  "openrouter": [
+    {"id": "or-claude-haiku-5.5", "model": "anthropic/claude-haiku-5.5", "price": {"in": 0.10, "out": 0.50}},
+    {"id": "or-gpt-6-luna", "model": "openai/gpt-6-luna", "price": {"in": 0.10, "out": 0.50}},
+    {"id": "or-gemini-3.6-flash", "model": "google/gemini-3.6-flash", "price": {"in": 0.75, "out": 3.75}},
+    {"id": "or-qwen3.8-flash", "model": "qwen/qwen3.8-flash", "price": {"in": 0.15, "out": 0.47}}
+  ]
+}

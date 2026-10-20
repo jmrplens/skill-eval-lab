@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.13"
+
+      - name: Compile every module
+        run: python -I -m py_compile lab/*.py lab/providers/*.py
+
+      - name: Provider registry resolves
+        run: |
+          python -I -c "import sys; sys.path.insert(0, 'lab'); from providers import ADAPTERS; \
+          got = sorted(ADAPTERS); exp = sorted(['anthropic', 'openai', 'openai-responses', 'google', 'qwen', 'openrouter']); \
+          assert got == exp, (got, exp); print('providers:', got)"
+
+      - name: Model catalog loads
+        run: |
+          python -I -c "import sys; sys.path.insert(0, 'lab'); from common import load_models; \
+          m = load_models(); assert len(m) >= 7, len(m); \
+          assert all('provider' in v and 'price' in v for v in m.values()); print('models:', sorted(m))"
+
+      - name: Shell scripts parse and lint
+        run: |
+          bash -n lab.sh pipeline.sh
+          shellcheck lab.sh pipeline.sh

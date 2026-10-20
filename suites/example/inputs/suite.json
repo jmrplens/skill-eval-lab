@@ -1,0 +1,12 @@
+{
+  "skill": "conventional-commits",
+  "key_file": "scenario-key.md",
+  "triggers": {
+    "should": ["T01", "T02", "T03"],
+    "should_not": ["T04", "T05"]
+  },
+  "judge_sources": {
+    "S1": ["SKILL.md"],
+    "S2": ["SKILL.md"]
+  }
+}

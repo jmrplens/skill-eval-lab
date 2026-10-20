@@ -1,0 +1,49 @@
+# Example MODELS_FILE catalog in the full "providers" shape: which providers to
+# use, which models in each, and where each provider's key comes from.
+#
+# Pass it with MODELS_FILE for pipeline.sh or lab.sh:
+#   OUT=runs/x MODELS_FILE=providers.example.yaml ./pipeline.sh
+#
+# `run.py discover` writes a file of exactly this shape (model names from each
+# provider's /models API, prices from OpenRouter); edit it down to what you want
+# and point MODELS_FILE at it. The file is merged OVER the built-in
+# lab/models.json, so you can also re-price a built-in id here. A YAML file needs
+# PyYAML (the wrappers add it to the container for a .yaml/.yml file); a JSON
+# file of the same shape needs nothing.
+
+# Rich shape: the provider carries its key, then lists its models. The key is a
+# .env variable name (api_key_env, the default and the safe choice) ...
+anthropic:
+  api_key_env: ANTHROPIC_API_KEY
+  models:
+    - id: haiku-5.5
+      model: claude-haiku-5-5
+      price: {in: 0.10, out: 0.50, cw: 0.125, cr: 0.01}
+    - id: sonnet-5.5
+      model: claude-sonnet-5-5
+      price: {in: 2.00, out: 10.00}
+
+# ... or an inline api_key (quick to try, but keep it out of a repo; .env is
+# git-ignored for this reason). A model may also carry its own api_key/api_key_env.
+openai:
+  api_key: "<openai-key-here>"
+  models:
+    - id: my-model
+      model: gpt-some-name
+      price: {in: 0.30, out: 1.50}
+
+# Compact shape is still accepted: a provider whose value is just the model list
+# (keys then come from .env by the provider's default variable, GOOGLE_API_KEY).
+google:
+  - id: gemini-flash
+    model: gemini-flash-latest
+    price: {in: 0.75, out: 3.75}
+
+# OpenRouter is an OpenAI-compatible gateway; its model ids are the provider/slug
+# form it routes by, and its key (OPENROUTER_API_KEY) comes from .env by default.
+openrouter:
+  api_key_env: OPENROUTER_API_KEY
+  models:
+    - id: or-claude-haiku-5.5
+      model: anthropic/claude-haiku-5.5
+      price: {in: 0.10, out: 0.50}

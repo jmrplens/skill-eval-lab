@@ -1,0 +1,34 @@
+# Example user catalog for MODELS_FILE / --models-file.
+#
+# This file is merged OVER the built-in lab/models.json: a model id already in
+# the built-in file has the fields you list here overridden (so you can
+# re-price it), and a new id is added. The shape is the same as models.json:
+# a map of provider to the array of its models, each with an "id", the
+# provider's own "model" name, and a "price" (USD per million tokens).
+#
+#   OUT=runs/x MODELS_FILE=models.example.yaml MODELS=opus-5.5,my-model ./pipeline.sh
+#
+# A YAML file needs PyYAML; the lab wrappers add it to the container for a
+# .yaml/.yml file. A JSON file of the same shape works with no dependency.
+
+# Re-price a built-in model without editing the shipped file. Only the fields
+# you give are changed; everything else about opus-5.5 is kept.
+anthropic:
+  - id: opus-5.5
+    model: claude-opus-5-5
+    price: {in: 5.00, out: 25.00, cw: 6.25, cr: 0.50}
+
+# Add a whole new OpenAI-compatible provider and model. The provider id is the
+# map key; the adapter is resolved by that name from lab/providers/, so a new
+# provider id also needs its one file there (see the README).
+openai:
+  - id: my-model
+    model: gpt-some-name
+    price: {in: 0.30, out: 1.50, cw: 0.375, cr: 0.03}
+
+# Add an OpenRouter model. OpenRouter is an OpenAI-compatible gateway and its
+# model ids are the provider/slug form it routes by; its key is OPENROUTER_API_KEY.
+openrouter:
+  - id: or-gpt-6-luna
+    model: openai/gpt-6-luna
+    price: {in: 0.10, out: 0.50}

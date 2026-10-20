@@ -1,0 +1,112 @@
+[
+  {
+    "provider": "Anthropic",
+    "model": "claude-haiku-5-5",
+    "input_per_mtok_usd": 0.10,
+    "output_per_mtok_usd": 0.50,
+    "cache_write_per_mtok_usd": 0.125,
+    "cache_read_per_mtok_usd": 0.01,
+    "source_url": "https://claude.com/pricing",
+    "retrieved_on": "2026-10-19",
+    "notes": "Figures are for prompts up to 100,000 tokens. Prompts over 100,000 tokens (whole request, cache reads and writes counted in the prompt length) are priced higher: input 0.50, output 2.50, 5m cache write 0.625, cache read 0.05. 1h cache write is 0.20 (1.00 over 100K) per platform.claude.com/docs/en/about-claude/pricing. The page does not label a 'standard tier'; these are the non-batch rates (batch is listed as 50% off; US-only inference 1.1x). The API model ID is not shown on the pricing page, which names it 'Claude Haiku 5.5'. Tool use: supported; the pricing page's tool-use table lists Haiku 5.5 (286 system-prompt tokens for tool_choice auto/none, 406 for any/tool)."
+  },
+  {
+    "provider": "Anthropic",
+    "model": "claude-sonnet-5-5",
+    "input_per_mtok_usd": 2.00,
+    "output_per_mtok_usd": 10.00,
+    "cache_write_per_mtok_usd": 2.50,
+    "cache_read_per_mtok_usd": 0.10,
+    "source_url": "https://claude.com/pricing",
+    "retrieved_on": "2026-10-19",
+    "notes": "Cache write is the 5 minute TTL; 1h write is 4.00 per platform.claude.com/docs/en/about-claude/pricing (cache read is 0.05x base input for this model). The page does not label a 'standard tier'; these are the non-batch rates (batch 50% off; US-only inference 1.1x). The API model ID is not shown on the pricing page, which names it 'Claude Sonnet 5.5'. Full 1M context at the same per-token rate. Tool use: supported; listed in the pricing page's tool-use table (286 system-prompt tokens for auto/none)."
+  },
+  {
+    "provider": "Anthropic",
+    "model": "claude-opus-5-5",
+    "input_per_mtok_usd": 4.00,
+    "output_per_mtok_usd": 20.00,
+    "cache_write_per_mtok_usd": 5.00,
+    "cache_read_per_mtok_usd": 0.20,
+    "source_url": "https://claude.com/pricing",
+    "retrieved_on": "2026-10-19",
+    "notes": "Cache write is the 5 minute TTL; 1h write is 8.00 per platform.claude.com/docs/en/about-claude/pricing (cache read is 0.05x base input for this model). The page does not label a 'standard tier'; these are the non-batch rates (batch 50% off; US-only inference 1.1x; fast mode is 8 input / 40 output, i.e. 2x). The API model ID is not shown on the pricing page, which names it 'Claude Opus 5.5'. Tool use: supported; listed in the pricing page's tool-use table (286 system-prompt tokens for auto/none)."
+  },
+  {
+    "provider": "OpenAI",
+    "model": "gpt-5.6-luna",
+    "input_per_mtok_usd": 0.20,
+    "output_per_mtok_usd": 1.20,
+    "cache_write_per_mtok_usd": 0.25,
+    "cache_read_per_mtok_usd": 0.02,
+    "source_url": "https://developers.openai.com/api/docs/pricing",
+    "retrieved_on": "2026-10-19",
+    "notes": "The model id exists, so no substitute was needed. Figures are the Standard tab, 'Short context' columns (cache_read is the 'Cached input' column; cache_write is the 'Cache writes' column). The model page (developers.openai.com/api/docs/models/gpt-5.6-luna) says prompts over 272K input tokens cost 2x input and 1.5x output for the full request. Context window 1,050,000, max output 128,000, knowledge cutoff 2026-02-16. Function calling: supported (listed on the model page). The same pricing page also lists a newer gpt-6-luna at 0.10 input / 0.01 cached / 0.50 output, which was not the requested id."
+  },
+  {
+    "provider": "Google",
+    "model": "gemini-flash-latest",
+    "input_per_mtok_usd": 0.75,
+    "output_per_mtok_usd": 3.75,
+    "cache_write_per_mtok_usd": null,
+    "cache_read_per_mtok_usd": 0.075,
+    "source_url": "https://ai.google.dev/gemini-api/docs/pricing",
+    "retrieved_on": "2026-10-19",
+    "notes": "UNCONFIRMED ALIAS TARGET. The pricing page does not mention gemini-flash-latest, and the models page only describes 'latest' aliases generally. The release notes (ai.google.dev/gemini-api/docs/changelog) last record the alias as moved on 2026-05-19 to gemini-3.5-flash; on 2026-10-08 they say gemini-3.5-flash is deprecated and its requests are routed to gemini-3.6-flash, and gemini-3.8-flash is the newest Flash model. No entry states the alias's target after that, so it is one of gemini-3.6-flash or gemini-3.8-flash; the pricing page gives both the identical price used here (paid tier, Standard, per 1M tokens): input 0.75, output incl. thinking 3.75, context caching 0.075, all introductory through 2026-12-31, rising from 2027-01-01 to input 1.50, output 7.50, caching 0.15. No separate '<=200k tokens' tier exists for Flash models; that tiering appears only on the Pro model. Cache write: the page publishes no per-token write price, only cache storage at 0.50 per 1M tokens per hour through 2026-12-31, then 1.00. Function calling: supported on the gemini-3.8-flash and gemini-3.6-flash model pages; the docs do not state it for the alias itself."
+  },
+  {
+    "provider": "Alibaba Cloud Model Studio",
+    "model": "qwen3.8-flash",
+    "input_per_mtok_usd": 0.15,
+    "output_per_mtok_usd": 0.47,
+    "cache_write_per_mtok_usd": 0.20,
+    "cache_read_per_mtok_usd": 0.016,
+    "source_url": "https://www.alibabacloud.com/help/en/model-studio/qwen3-8-flash",
+    "retrieved_on": "2026-10-19",
+    "notes": "Singapore, 'Scope: International', official USD figures (also on https://www.alibabacloud.com/help/en/model-studio/model-pricing, in the Singapore Qwen-Flash table). One tier: 0<Token<=1M input tokens per request. The pricing page does not split output price by thinking vs non-thinking. cache_write is 'Explicit Cache Creation' (0.2); cache_read is 'Explicit Cache Read' (0.016), and 'Input (Implicit Cache)' is also 0.016. The page does not show the dashscope-intl.aliyuncs.com hostname; it states the region and scope only. Free quota 1M tokens for 90 days. The US scope is priced the same; the other regions are cheaper (0.113 / 0.382). Function calling: Supported in Singapore (International) per the model info page. Note that the separate function-calling guide's 'Supported models' list names Qwen3.7, 3.6, 3.5 and base Flash series but not Qwen3.8-Flash, so only the model info page confirms it."
+  },
+  {
+    "provider": "OpenRouter",
+    "model": "anthropic/claude-haiku-5.5",
+    "input_per_mtok_usd": 0.10,
+    "output_per_mtok_usd": 0.50,
+    "cache_write_per_mtok_usd": null,
+    "cache_read_per_mtok_usd": null,
+    "source_url": "https://openrouter.ai/api/v1/models",
+    "retrieved_on": "2026-10-20",
+    "notes": "These are OpenRouter's gateway-listed prices from the /models endpoint, which exposes prompt and completion rates only, so cache write and read prices are not recorded here and the budget falls back to the input rate, OpenRouter proxies tool and function calling for this model, and OpenRouter may route the request to the underlying provider whose own price can differ."
+  },
+  {
+    "provider": "OpenRouter",
+    "model": "openai/gpt-6-luna",
+    "input_per_mtok_usd": 0.10,
+    "output_per_mtok_usd": 0.50,
+    "cache_write_per_mtok_usd": null,
+    "cache_read_per_mtok_usd": null,
+    "source_url": "https://openrouter.ai/api/v1/models",
+    "retrieved_on": "2026-10-20",
+    "notes": "These are OpenRouter's gateway-listed prices from the /models endpoint, which exposes prompt and completion rates only, so cache write and read prices are not recorded here and the budget falls back to the input rate, OpenRouter proxies tool and function calling for this model, and OpenRouter may route the request to the underlying provider whose own price can differ."
+  },
+  {
+    "provider": "OpenRouter",
+    "model": "google/gemini-3.6-flash",
+    "input_per_mtok_usd": 0.75,
+    "output_per_mtok_usd": 3.75,
+    "cache_write_per_mtok_usd": null,
+    "cache_read_per_mtok_usd": null,
+    "source_url": "https://openrouter.ai/api/v1/models",
+    "retrieved_on": "2026-10-20",
+    "notes": "These are OpenRouter's gateway-listed prices from the /models endpoint, which exposes prompt and completion rates only, so cache write and read prices are not recorded here and the budget falls back to the input rate, OpenRouter proxies tool and function calling for this model, and OpenRouter may route the request to the underlying provider whose own price can differ."
+  },
+  {
+    "provider": "OpenRouter",
+    "model": "qwen/qwen3.8-flash",
+    "input_per_mtok_usd": 0.15,
+    "output_per_mtok_usd": 0.47,
+    "cache_write_per_mtok_usd": null,
+    "cache_read_per_mtok_usd": null,
+    "source_url": "https://openrouter.ai/api/v1/models",
+    "retrieved_on": "2026-10-20",
+    "notes": "These are OpenRouter's gateway-listed prices from the /models endpoint, which exposes prompt and completion rates only, so cache write and read prices are not recorded here and the budget falls back to the input rate, OpenRouter proxies tool and function calling for this model, and OpenRouter may route the request to the underlying provider whose own price can differ."
+  }
+]
